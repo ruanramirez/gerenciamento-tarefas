@@ -1,9 +1,11 @@
 <template>
 	<div class="task-list">
 		<template v-if="tasks.length">
-			<Task v-for="task in tasks" :key="task.name" :task="task" />
+			<Task v-for="(task, i) in tasks" :key="task.name" :task="task"
+			@taskDeleted="$emit('taskDeleted', i)"
+			@taskStateChanged="$emit('taskStateChanged', i)" />
 		</template>
-		<p v-else class="no-task">Sua vida está em dia</p>
+		<p v-else class="no-task">Nenhuma tarefa foi cadastrada</p>
 	</div>
 </template>
 
